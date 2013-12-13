@@ -34,10 +34,6 @@ public class JsonObjects {
             obj.put("Name","Staff");
             obj.put("Image", R.drawable.ic_employee);
             array.add(obj);
-            obj = new JSONObject();
-            obj.put("Name","Settings");
-            obj.put("Image", R.drawable.ic_settings);
-            array.add(obj);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -34,7 +34,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <meta-data android:name="com.google.android.gms.version"
+        <meta-data
+            android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <receiver
             android:name="com.hk.Components.GcmReciever"
@@ -45,9 +46,7 @@
                 <category android:name="com.hk.agentsphere" />
             </intent-filter>
         </receiver>
-
         <service android:name="com.hk.Components.GcmIntentService" />
-
         <activity
             android:name="com.hk.agentsphere.StartActivity"
             android:label="@string/app_name"
@@ -65,7 +64,11 @@
         </activity>
         <activity
             android:name="com.hk.agentsphere.DashboardActivity"
-            android:label="@string/title_activity_dashboard" >
+            android:label="@string/title_activity_dashboard"
+            android:uiOptions="splitActionBarWhenNarrow">
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
             android:name="com.hk.agentsphere.SettingsActivity"
@@ -141,6 +144,24 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="DashboardActivity" />
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.NewListingActivity"
+            android:label="@string/title_activity_new_listing"
+            android:parentActivityName="com.hk.agentsphere.ListingsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.ListingDetailsActivity"
+            android:label="@string/title_activity_listing_details"
+            android:parentActivityName="ListingsActivity"
+            android:uiOptions="splitActionBarWhenNarrow">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ListingsActivity" />
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
         </activity>
     </application>
 
