@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.hk.agentsphere.LeadDetailsActivity" >
+
+
+    <item android:id="@+id/lead_remainder"
+        android:title="Edit"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_time"></item>
+    <item android:id="@+id/lead_mark"
+        android:title="Favorite"
+        android:orderInCategory="3"
+        android:showAsAction="collapseActionView"
+        android:icon="@drawable/ic_action_important"></item>
+    <item android:id="@+id/lead_convert"
+        android:title="Edit"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_import_export"></item>
+   <item android:id="@+id/lead_new_email"
+       android:title="Compose Mail"
+       android:icon="@drawable/ic_action_new_email"
+       android:showAsAction="always"
+       android:orderInCategory="4"></item>
+    <item android:id="@+id/lead_call"
+        android:title="Call"
+        android:icon="@drawable/ic_action_call"
+        android:showAsAction="always"
+        android:orderInCategory="5"></item>
+    <item android:id="@+id/lead_attachment"
+        android:title="Attach Image"
+        android:showAsAction="collapseActionView"
+        android:orderInCategory="6"
+        android:icon="@drawable/ic_action_new_attachment"></item>
+
+
+
+
+</menu>

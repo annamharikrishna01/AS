@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:paddingBottom="10dp"
+            android:id="@+id/textView"
+            android:textColor="#112A5C"
+            android:textStyle="bold"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#525150"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+   <ScrollView
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_centerInParent="true">
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           style="@style/Section">
+
+           <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content" >
+               <EditText
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="text"
+                   android:hint="Name"
+                   android:id="@+id/Name"
+                   style="@style/Input"/>
+               <EditText
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textEmailAddress"
+                   android:hint="Email"
+                   android:id="@+id/LoginEmail"
+                   style="@style/Input"/>
+               <EditText
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textPassword"
+                   android:hint="Password"
+                   android:id="@+id/Password"
+                   style="@style/Input"/>
+               <EditText
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="textPassword"
+                   android:hint="Confirm Password"
+                   android:id="@+id/RePassword"
+                   style="@style/Input"/>
+               <EditText
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:inputType="number"
+                   android:hint="Phone Number"
+                   android:id="@+id/Phone"
+                   style="@style/Input"/>
+
+               <EditText
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:hint="Organization"
+                   android:inputType="text"
+                   style="@style/Input"/>
+               <Spinner
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   style="@style/Input"
+                   android:entries="@array/Countries"
+                   android:id="@+id/Country">
+
+                </Spinner>
+               <Spinner
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   style="@style/Input"
+                   android:id="@+id/Profile"
+                   android:entries="@array/ProfileTypes">
+
+               </Spinner>
+           </LinearLayout>
+           <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:paddingBottom="20dp"
+               android:paddingTop="30dp">
+               <Button
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:text="REGISTER"
+                   android:layout_gravity="center_horizontal"/>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+   </ScrollView>
+    </RelativeLayout>
+</LinearLayout>

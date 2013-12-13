@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hk.agentsphere"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <permission
+        android:name="com.hk.agentsphere.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.hk.agentsphere.permission.C2D_MESSAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <receiver
+            android:name="com.hk.Components.GcmReciever"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.hk.agentsphere" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.hk.Components.GcmIntentService" />
+
+        <activity
+            android:name="com.hk.agentsphere.StartActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.DashboardActivity"
+            android:label="@string/title_activity_dashboard" >
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.LeadsActivity"
+            android:label="@string/title_activity_leads"
+            android:parentActivityName="com.hk.agentsphere.DashboardActivity" >
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.NewLeadActivity"
+            android:label="@string/title_activity_new_lead"
+            android:parentActivityName="com.hk.agentsphere.LeadsActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.NewContactActivity"
+            android:label="@string/title_activity_new_contact"
+            android:parentActivityName="com.hk.agentsphere.DashboardActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.LeadDetailsActivity"
+            android:label="@string/title_activity_lead_details"
+            android:parentActivityName="com.hk.agentsphere.LeadsActivity"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.FollowupActivity"
+            android:label="@string/title_activity_followup"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.RequirementActivity"
+            android:label="@string/title_activity_requirement"
+            android:parentActivityName="NewLeadActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="NewLeadActivity" />
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.ContactsActivity"
+            android:label="@string/title_activity_contacts"
+            android:parentActivityName="DashboardActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="DashboardActivity" />
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.ContactsDetailsActivity"
+            android:label="@string/title_activity_contacts_details"
+            android:parentActivityName="ContactsActivity"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ContactsActivity" />
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.ListingsActivity"
+            android:label="@string/title_activity_listings"
+            android:parentActivityName="DashboardActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="DashboardActivity" />
+        </activity>
+    </application>
+
+</manifest>

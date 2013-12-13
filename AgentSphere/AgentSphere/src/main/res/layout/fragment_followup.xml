@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/Page"
+    tools:context="com.hk.agentsphere.FollowupActivity$PlaceholderFragment">
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+   <LinearLayout
+       android:orientation="vertical"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       style="@style/Form">
+
+       <EditText
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/followup_title"
+           android:inputType="textCapSentences"
+           android:hint="Title"
+           style="@style/Input"/>
+
+       <Spinner
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           style="@style/Input"
+           android:id="@+id/followup_type"
+           android:entries="@array/followupTypes">
+
+       </Spinner>
+      <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          >
+
+          <EditText
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/followup_date"
+              android:hint="Date"
+              android:inputType="date"
+              android:layout_weight="1"
+              style="@style/Input"/>
+          <EditText
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:inputType="time"
+              android:id="@+id/followup_time"
+              android:hint="time"/>
+      </LinearLayout>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Notes"
+           android:padding="10dp"
+           android:textColor="#112A5C"
+           android:textStyle="bold"/>
+        <EditText
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:inputType="textMultiLine"
+           android:maxLines="10"
+           android:lines="10"
+           android:minLines="10"
+           android:gravity="top|left"
+           android:hint="Notes"
+            android:id="@+id/Notes"
+           android:scrollbars="vertical"
+           style="@style/Input"/>
+
+   </LinearLayout>
+</ScrollView>
+</LinearLayout>

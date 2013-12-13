@@ -1,0 +1,16 @@
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="100px"
+    android:layout_height="match_parent"
+    android:choiceMode="singleChoice"
+    android:divider="#111"
+    android:dividerHeight="0dp"
+    android:background="#eee"
+    android:id="@+id/navigation_list"
+    android:clickable="true"
+    tools:context="com.hk.agentsphere.NavigationDrawerFragment"
+    tools:listitem="@layout/fragment_navigation_item">
+
+
+
+</ListView>

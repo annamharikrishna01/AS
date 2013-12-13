@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.hk.agentsphere.RequirementActivity" >
+
+    <item android:id="@+id/requiremebt_save"
+        android:title="@string/action_Save"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_action_accept"
+        android:showAsAction="always" />
+    <item android:id="@+id/requirement_cancel"
+        android:title="@string/action_cancel"
+        android:icon="@drawable/ic_action_cancel"
+        android:orderInCategory="2"
+        android:showAsAction="always" />
+</menu>
