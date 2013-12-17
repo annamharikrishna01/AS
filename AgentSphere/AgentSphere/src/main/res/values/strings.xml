@@ -48,5 +48,6 @@
     <string name="title_activity_listings">Listings</string>
     <string name="title_activity_new_listing">Listing</string>
     <string name="title_activity_listing_details">Listing</string>
+    <string name="title_activity_image_slid_activty">ImageSlidActivty</string>
 
 </resources>

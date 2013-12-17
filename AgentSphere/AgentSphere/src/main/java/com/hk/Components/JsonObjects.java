@@ -19,6 +19,10 @@ public class JsonObjects {
 
         try {
             JSONObject obj = new JSONObject();
+            obj.put("Name","Home");
+            obj.put("Image", R.drawable.ic_dashboard);
+            array.add(obj);
+            obj = new JSONObject();
             obj.put("Name","Leads");
             obj.put("Image", R.drawable.ic_lead);
             array.add(obj);
@@ -30,10 +34,10 @@ public class JsonObjects {
             obj.put("Name","Listings");
             obj.put("Image", R.drawable.ic_properties);
             array.add(obj);
-            obj = new JSONObject();
-            obj.put("Name","Staff");
-            obj.put("Image", R.drawable.ic_employee);
-            array.add(obj);
+           // obj = new JSONObject();
+          //  obj.put("Name","Staff");
+           // obj.put("Image", R.drawable.ic_employee);
+           // array.add(obj);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -65,6 +69,7 @@ public static JSONObject getLead()
     }
     return  obj;
 }
+
     public ArrayList<JSONObject> getLeads()
     {
         ArrayList<JSONObject> array=new ArrayList<JSONObject>();
@@ -119,27 +124,27 @@ public static JSONObject getLead()
         try {
             JSONObject fInfo = new JSONObject();
             fInfo.put("Title","Call to get lead requirements");
-            fInfo.put("FollowupDate","Dec 6");
+            fInfo.put("Date","Dec 6");
             fInfo.put("Time","10:40 am");
-            fInfo.put("Remarks","Get Requirements");
+            fInfo.put("Notes","Get Requirements");
             followups.add(fInfo);
             fInfo = new JSONObject();
             fInfo.put("Title","Meetup with Lead to show listings");
-            fInfo.put("FollowupDate","Dec 7");
+            fInfo.put("Date","Dec 7");
             fInfo.put("Time","12:00 am");
-            fInfo.put("Remarks","Show Listing");
+            fInfo.put("Notes","Show Listing");
             followups.add(fInfo);
             fInfo = new JSONObject();
             fInfo.put("Title","Call Lead to get feedback");
-            fInfo.put("FollowupDate","Dec 8");
+            fInfo.put("Date","Dec 8");
             fInfo.put("Time","11:00 am");
-            fInfo.put("Remarks","Get Feedback");
+            fInfo.put("Notes","Get Feedback");
             followups.add(fInfo);
             fInfo = new JSONObject();
             fInfo.put("Title","Call Lead to get more information");
-            fInfo.put("FollowupDate","Dec 9");
+            fInfo.put("Date","Dec 9");
             fInfo.put("Time","1:00 pm");
-            fInfo.put("Remarks","Get More Information");
+            fInfo.put("Notes","Get More Information");
             followups.add(fInfo);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -167,5 +172,78 @@ public static JSONObject getLead()
             e.printStackTrace();
         }
         return req;
+    }
+
+    public ArrayList<JSONObject> GetListings()
+    {
+       ArrayList<JSONObject> listings = new ArrayList<JSONObject>();
+       for(int i=0;i<=10;i++)
+       {
+
+        JSONObject Listing = new JSONObject();
+        try {
+            Listing.put("Listing Type","Sale");
+            Listing.put("Name","3115 Broadway");
+            Listing.put("Community","Morningside Heights");
+            Listing.put("Property Type","Single Family Home");
+            Listing.put("Price","350000");
+            Listing.put("Beds","2.5");
+            Listing.put("Baths","2");
+            Listing.put("Total Area","2800");
+            Listing.put("Carpet Area","2700");
+            Listing.put("Age","2");
+            Listing.put("Street Address","New York, NY 10026");
+            Listing.put("Street Address2","");
+            Listing.put("City","New York");
+            Listing.put("ZipCode","10026");
+            Listing.put("LotSize","0.68 acers");
+            Listing.put("Amenities","Garage,SwimmingPool");
+            Listing.put("Images",images());
+            Listing.put("Notes", GetNotes());
+            Listing.put("Description","A PRIME COLUMBIA UNIVERSITY AREA LOCALE. In a finely kept residence this wonderfully maintained building features handsome marble and mosaic tiling, laundry room, bicycle housing, common courtyard, additional storage, and an absolutely wonderful live-in superintendent. Housed in one of the best cooperatives in Morningside Heights the BRIGHT, QUITE, modest 2 bed room with still kept and contemporary character intently awaits your arrival.");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+           listings.add(Listing);
+       }
+        return  listings;
+    } 
+    public ArrayList<JSONObject> images()
+    {
+        ArrayList<JSONObject> ims =new ArrayList<JSONObject>();
+
+
+        try {
+            JSONObject  img =new JSONObject();
+            img.put("Image",R.drawable.im_1);
+            ims.add(img);
+            img= new JSONObject();
+            img.put("Image",R.drawable.im_2);
+            ims.add(img);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+      return ims;
+    }
+    public ArrayList<JSONObject> GetNotes()
+    {
+        ArrayList<JSONObject> notes = new ArrayList<JSONObject>();
+
+        try {
+            JSONObject note =new JSONObject();
+            note.put("Date","12/15/2103");
+            note.put("Title","Shortlisted");
+            note.put("Message","Shortlisted listings to the lead based on requirements");
+            notes.add(note);
+            note =new JSONObject();
+            note.put("Date","12/17/2103");
+            note.put("Title","Showing");
+            note.put("Message","Timings for show 11:00 am to 4:00 pm");
+            notes.add(note);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return  notes;
     }
 }

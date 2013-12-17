@@ -8,7 +8,6 @@
    <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
@@ -51,7 +50,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recent Activity"
+            android:text="Upcoming Activity"
             android:padding="10dp"
             android:id="@+id/textView"
             android:textColor="#112A5C"
@@ -138,7 +137,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             style="@style/Form">
-        <LinearLayout
+            <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
@@ -260,14 +259,32 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Requirements Info"
-            android:padding="10dp"
-            android:id="@+id/textView"
-            android:textColor="#112A5C"
-            android:textStyle="bold"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Requirements Info"
+                android:padding="10dp"
+                android:id="@+id/textView"
+                android:textColor="#112A5C"
+                android:layout_weight="1"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/ic_dark_action_edit"
+                    android:background="#fff"/>
+
+            </LinearLayout>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -557,7 +574,6 @@
                 android:text="update"
                 android:padding="10dp"/>
         </LinearLayout>
-
        </LinearLayout>
     </ScrollView>
 

@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.cloudgust.CGObject;
 import com.hk.agentsphere.ContactsDetailsActivity;
 import com.hk.agentsphere.LeadDetailsActivity;
+import com.hk.agentsphere.ListingDetailsActivity;
 import com.hk.agentsphere.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,7 +66,27 @@ public class ListViews extends ArrayAdapter<JSONObject>{
            View nView = contactsList(li, position, group);
            return  nView;
        }
-        else {
+       else if(this.type == "Listings")
+       {
+           View view= li.inflate(R.layout.fragment_listing_listitem,group,false);
+           View nView =listingsList(li, position, group);
+           return  nView;
+
+       }
+       else if(this.type == "Notes")
+       {
+           View view= li.inflate(R.layout.fragment_note_listitem,group,false);
+            View nView =notelist(li, position, group);
+            return  nView;
+
+        }
+       else if(this.type == "Followups")
+       {
+           View view= li.inflate(R.layout.fragment_lead_followup_listitem,group,false);
+           View nView =followuplist(li, position, group);
+           return  nView;
+       }
+       else {
 
            View view= li.inflate(R.layout.fragment_navigation_item,group,false);
            View nView = navigationView(li, position, group);
@@ -73,19 +95,110 @@ public class ListViews extends ArrayAdapter<JSONObject>{
        }
     }
 
-     
+    public View followuplist(LayoutInflater li, int position, ViewGroup group) {
+        View view= li.inflate(R.layout.fragment_lead_followup_listitem, group, false);
+        TextView date = (TextView)view.findViewById(R.id.followup_date);
+        TextView remark =(TextView)view.findViewById(R.id.followup_remark);
+        TextView title =(TextView)view.findViewById(R.id.followup_title);
+        JSONObject item = objects.get(position);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent det = new Intent(getContext(),LeadDetailsActivity.class);
+                det.putExtra("Followup",1);
+                getContext().startActivity(det);
+                return;
+            }
+        });
+
+        try {
+            date.setText(item.getString("Date"));
+            title.setText(item.getString("Title"));
+            remark.setText(item.getString("Notes"));
+        } catch (JSONException e) {
+
+        }
+        return view;
+    }
+
+    public View notelist(LayoutInflater li, int position, ViewGroup group) {
+        View view= li.inflate(R.layout.fragment_note_listitem,group,false);
+        TextView ln = (TextView)view.findViewById(R.id.note_title);
+        TextView lt =(TextView)view.findViewById(R.id.note_date);
+        TextView lp =(TextView)view.findViewById(R.id.note_meassage);
+        final JSONObject ob = objects.get(position);
+        try {
+            ln.setText(ob.getString("Title"));
+            lt.setText(ob.getString("Date"));
+            lp.setText(ob.getString("Message"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return view;
+
+    }
+
+    public View listingsList(LayoutInflater li, int position, ViewGroup group) {
+
+        View view= li.inflate(R.layout.fragment_listing_listitem,group,false);
+        TextView ln = (TextView)view.findViewById(R.id.listing_name);
+        TextView lt =(TextView)view.findViewById(R.id.listing_type);
+        TextView lp =(TextView)view.findViewById(R.id.listing_price);
+
+        TextView la=(TextView)view.findViewById(R.id.listing_address);
+        TextView lb=(TextView)view.findViewById(R.id.listing_beds);
+        TextView lba=(TextView)view.findViewById(R.id.listing_baths);
+        TextView lar=(TextView)view.findViewById(R.id.listing_area);
+
+        final JSONObject ob = objects.get(position);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent listingDetail = new Intent(getContext(), ListingDetailsActivity.class);
+                listingDetail.putExtra("Listing", ob.toString());
+                getContext().startActivity(listingDetail);
+                return;
+            }
+        });
+        try {
+            ln.setText(ob.getString("Name")+","+ob.getString("Community"));
+            lt.setText(ob.getString("Listing Type"));
+            lp.setText("Price-"+ob.getString("Price"));
+            la.setText(ob.getString("Street Address"));
+            lb.setText("Beds-"+ob.getString("Beds"));
+            lba.setText("Baths-"+ob.getString("Baths"));
+            lar.setText("Area-"+ob.getString("Total Area")+"Sqft");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return view;
+    }
+
+
     public View leadsummuryList(LayoutInflater li,int position,ViewGroup group)
     {
         View view= li.inflate(R.layout.fragment_summury_lead_listitem,group,false);
         TextView lm = (TextView)view.findViewById(R.id.lead_name);
         TextView ls =(TextView)view.findViewById(R.id.Lead_status);
-        //TextView lp =(TextView)view.findViewById(R.id.lead_recent_activity);
+        TextView lp =(TextView)view.findViewById(R.id.lead_prev_action);
+        TextView pt =(TextView)view.findViewById(R.id.lead_prev_time);
         ImageButton le=(ImageButton)view.findViewById(R.id.lead_email);
         ImageButton lc = (ImageButton) view.findViewById(R.id.lead_call);
 
         final CGObject ob = objects.get(position);
         try {
             ob.put("id",ob.getId());
+            String fObj = ob.get("Followups").toString();
+            ArrayList<JSONObject> followups = GetFoloowups(fObj);
+            JSONObject followup = followups.get(followups.size()-1);
+            if(followup != null)
+            {
+                  pt.setText("18 dec 11:00 am :");
+               // fTitle.setText(ob.getString("Title"));
+                 lp.setText(followup.getString("Notes"));
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -142,6 +255,25 @@ public class ListViews extends ArrayAdapter<JSONObject>{
 
         return view;
 
+    }
+
+    private ArrayList<JSONObject> GetFoloowups(String fObj) {
+        ArrayList<JSONObject> followups = new ArrayList<JSONObject>();
+        if (!fObj.isEmpty())
+        {
+            try {
+
+                JSONArray temp = new JSONArray(fObj);
+                for (int i =0;i< temp.length();i++)
+                {
+                    followups.add(new JSONObject(temp.get(i).toString()));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return  followups;
     }
 
     public View navigationView(LayoutInflater li,int position,ViewGroup group)

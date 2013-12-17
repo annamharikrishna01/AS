@@ -12,6 +12,11 @@
         <item>PhoneCall</item>
         <item>Meeting</item>
     </string-array>
+    <string-array name="followupStatus">
+        <item>Working</item>
+        <item>Closed</item>
+
+    </string-array>
     <string-array name="LeadStatus">
         <item>New</item>
         <item>Contacted</item>

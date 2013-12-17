@@ -38,7 +38,7 @@ public  class Dialogs extends DialogFragment {
                                startActivity(contact);
                                break;
                            case 2:
-                               Intent listing =new Intent(getActivity().getApplicationContext(), NewListingActivity.class);
+                               Intent listing =new Intent(getActivity().getApplicationContext(),NewListingActivity.class);
                                startActivity(listing);
                                break;
                        }

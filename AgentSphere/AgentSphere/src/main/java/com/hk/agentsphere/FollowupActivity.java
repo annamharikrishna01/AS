@@ -61,7 +61,7 @@ public class FollowupActivity extends Activity {
             case R.id.followup_save:
                 View v=getWindow().getDecorView();
                 JSONObject followup = GetFollowup(v);
-                CloudGust.initialize("52a9b6cb75a43c192344de1f", "9886190c-aafd-45a8-a37d-0b96651aedaf");
+                CloudGust.initialize("52b02d2d75a43c192344de29", "db6c7594-7e1c-4ce2-a014-aa085c151f67");
                 CloudGust.setUser("1","admin","admin");
                 try {
                     if(followup != null)

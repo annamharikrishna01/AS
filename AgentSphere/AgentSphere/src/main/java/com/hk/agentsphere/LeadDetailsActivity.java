@@ -21,16 +21,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cloudgust.CGCollection;
 import com.cloudgust.CGException;
+import com.cloudgust.CGFetchCallback;
 import com.cloudgust.CGObject;
 import com.cloudgust.CGSaveCallback;
 import com.cloudgust.CloudGust;
+import com.hk.Components.JsonObjects;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +61,7 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
         setContentView(R.layout.activity_lead_details);
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        CloudGust.initialize("52a9b6cb75a43c192344de1f", "9886190c-aafd-45a8-a37d-0b96651aedaf");
+        CloudGust.initialize("52b02d2d75a43c192344de29", "db6c7594-7e1c-4ce2-a014-aa085c151f67");
         CloudGust.setUser("1","admin","admin");
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -65,6 +69,8 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
         if(extras != null)
         {
             String lead = extras.getString("Lead");
+            if(lead != null)
+            {
             try {
                 LeadObj = new JSONObject(lead);
                 JSONObject cInfo =LeadObj.getJSONObject("Contact");
@@ -73,9 +79,40 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Lead=lead;
+                Lead=lead;
+                settabView();
+            }
+            else
+            {
+                int follow = extras.getInt("Followup");
+                CGCollection leadsCol = new CGCollection("Leads");
+                leadsCol.fetch(new CGFetchCallback() {
+                    @Override
+                    public void done(ArrayList<CGObject> cgObjects, CGException e) {
+                        Lead = cgObjects.get(1).toString();
+                        try {
+                            LeadObj = new JSONObject(Lead);
+                            JSONObject cInfo =LeadObj.getJSONObject("Contact");
+                            Phone = cInfo.getString("Phone");
+                            Email =cInfo.getString("Email");
+                            settabView();
+                            mViewPager.setCurrentItem(1);
 
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
+
+                    }
+                });
+
+            }
         }
+
+    }
+
+    public void settabView()
+    {
+        final ActionBar actionBar = getActionBar();
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -97,7 +134,6 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
                             .setTabListener(this));
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -481,6 +517,12 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
                                         e.printStackTrace();
                                     }
                                     alert.setView(contentView);
+                                    alert.setPositiveButton("Update",new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Toast.makeText(getActivity().getApplicationContext(),"Followup updated",Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                                     alert.show();
 
                                 }
@@ -494,9 +536,34 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
                     return View2;
                 case 3:
                     View View3 = inflater.inflate(R.layout.fragment_lead_timeline, container, false);
+                    ImageButton btnNote = (ImageButton)View3.findViewById(R.id.action_note);
+                    btnNote.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getActivity().getApplicationContext(),"Note Added",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    JsonObjects nob =new JsonObjects();
+                    final ListView notelist = (ListView)View3.findViewById(R.id.lead_timeline_list);
+                    com.hk.Components.ListViews nadpter=new com.hk.Components.ListViews(
+                            View3.getContext(),
+                            R.layout.fragment_note_listitem,
+                            nob.GetNotes(),
+                            "Notes"
+                    );
+                    notelist.setAdapter(nadpter);
                     return View3;
                 case 4:
                     View view4=inflater.inflate(R.layout.fragment_lead_shortlists, container, false);
+                    JsonObjects ob=new JsonObjects();
+                    final ListView listingList =(ListView)view4.findViewById(R.id.listings_list);
+                    com.hk.Components.ListViews adpter=new com.hk.Components.ListViews(
+                            view4.getContext(),
+                            R.layout.fragment_listing_listitem,
+                            ob.GetListings(),
+                            "Listings"
+                    );
+                    listingList.setAdapter(adpter);
                     return view4;
                default:
                    View rootView = inflater.inflate(R.layout.fragment_lead_basic, container, false);
@@ -538,7 +605,7 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
         }
 
 
-         public class LeadLists extends  ArrayAdapter<JSONArray>{
+       public class LeadLists extends  ArrayAdapter<JSONArray>{
 
              private final Context context;
              private final ArrayList<JSONObject> objects;

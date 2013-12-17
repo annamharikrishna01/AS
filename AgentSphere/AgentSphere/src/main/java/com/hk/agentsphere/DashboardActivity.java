@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cloudgust.CGCollection;
 import com.cloudgust.CGException;
@@ -24,6 +23,7 @@ import com.cloudgust.CGFetchCallback;
 import com.cloudgust.CGObject;
 import com.cloudgust.CloudGust;
 import com.hk.Components.Dialogs;
+import com.hk.Components.JsonObjects;
 
 import java.util.ArrayList;
 
@@ -64,12 +64,15 @@ public class DashboardActivity extends Activity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.menu_lead);
+                mTitle = getString(R.string.app_name);
                 break;
             case 2:
-                mTitle = getString(R.string.menu_contacts);
+                mTitle = getString(R.string.menu_lead);
                 break;
             case 3:
+                mTitle = getString(R.string.menu_contacts);
+                break;
+            case 4:
                 mTitle = getString(R.string.menu_listings);
                 break;
         }
@@ -94,7 +97,7 @@ public class DashboardActivity extends Activity
         this.mMenu = menu;
 
 
-        // Associate searchable configuration with the SearchView
+
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -107,26 +110,44 @@ public class DashboardActivity extends Activity
         switch (id)
         {
             case R.id.action_new:
-                Dialogs dia= new Dialogs();
-                dia.show(getFragmentManager(),"");
-                return true;
+                switch (context)
+                {
+                    case 0:
+                        Dialogs dia= new Dialogs();
+                        dia.show(getFragmentManager(),"New");
+                        break;
+                    case 1:
+                        Intent lead = new Intent(getApplicationContext(),NewLeadActivity.class);
+                        startActivity(lead);
+                        break;
+                    case 2:
+                        Intent contact = new Intent(getApplicationContext(),NewContactActivity.class);
+                        startActivity(contact);
+                        break;
+                    case 3:
+                        Intent  listing= new Intent(getApplicationContext(),NewListingActivity.class);
+                        startActivity(listing);
+                        break;
+                }
+                break;
+
             case R.id.action_settings:
                 Intent settings= new Intent(this,SettingsActivity.class);
                 startActivity(settings);
-                return true;
+                break;
 
             case R.id.action_list:
                  switch (context)
                  {
-                     case 0:
+                     case 1:
                          Intent leads = new Intent(this,LeadsActivity.class);
                          startActivity(leads);
                          break;
-                     case 1:
+                     case 2:
                          Intent contacs = new Intent(this,ContactsActivity.class);
                          startActivity(contacs);
                          return true;
-                     case 2:
+                     case 3:
                          Intent listings = new Intent(this,ListingsActivity.class);
                          startActivity(listings);
                          return true;
@@ -136,6 +157,7 @@ public class DashboardActivity extends Activity
                          startActivity(dleads);
                          return true;
                  }
+                break;
 
         }
         return super.onOptionsItemSelected(item);
@@ -163,6 +185,18 @@ public class DashboardActivity extends Activity
             switch(getArguments().getInt(ARG_SECTION_NUMBER))
             {
                 case 1:
+                    final View view = inflater.inflate((R.layout.fragment_dashboard_home), container, false);
+                    JsonObjects fobjs = new JsonObjects();
+                    final ListView fups =(ListView)view.findViewById(R.id.followups_list);
+                    com.hk.Components.ListViews fadpter=new com.hk.Components.ListViews(
+                            view.getContext(),
+                            R.layout.fragment_lead_followup_listitem,
+                            fobjs.getFollowups(),
+                            "Followups"
+                    );
+                    fups.setAdapter(fadpter);
+                    return view;
+                case 2:
                     final View view1 = inflater.inflate((R.layout.fragment_dasboard_lead), container, false);
                     Button show = (Button)view1.findViewById(R.id.lead_showall);
                     show.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +207,7 @@ public class DashboardActivity extends Activity
                         }
                     });
                     final ListView hotleads =(ListView)view1.findViewById(R.id.lead_summury_list);
-                    CloudGust.initialize("52a9b6cb75a43c192344de1f", "9886190c-aafd-45a8-a37d-0b96651aedaf");
+                    CloudGust.initialize("52b02d2d75a43c192344de29", "db6c7594-7e1c-4ce2-a014-aa085c151f67");
                     CloudGust.setUser("1","admin","admin");
                     CGCollection cInfo =new CGCollection("Leads");
                     cInfo.fetch(new CGFetchCallback() {
@@ -190,9 +224,9 @@ public class DashboardActivity extends Activity
                     });
 
                     return view1;
-                case 2:
+                case 3:
                     final View view2 = inflater.inflate((R.layout.fragment_dashboard_contacts),container,false);
-                    CloudGust.initialize("52a9b6cb75a43c192344de1f", "9886190c-aafd-45a8-a37d-0b96651aedaf");
+                    CloudGust.initialize("52b02d2d75a43c192344de29", "db6c7594-7e1c-4ce2-a014-aa085c151f67");
                     CloudGust.setUser("1","admin","admin");
                     final ListView contactList =(ListView)view2.findViewById(R.id.contact_list);
                     CGCollection coInfo =new CGCollection("Contacts");
@@ -210,8 +244,25 @@ public class DashboardActivity extends Activity
                     });
 
                     return  view2;
-                case 3:
+                case 4:
                     final View view3 = inflater.inflate((R.layout.fragment_dashboard_listings),container,false);
+                    Button all = (Button)view3.findViewById(R.id.listings_showall);
+                    all.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent list =new Intent(getActivity().getApplicationContext(),ListingsActivity.class);
+                            startActivity(list);
+                        }
+                    });
+                    JsonObjects ob=new JsonObjects();
+                    final ListView listingList =(ListView)view3.findViewById(R.id.listings_list);
+                    com.hk.Components.ListViews adpter=new com.hk.Components.ListViews(
+                            view3.getContext(),
+                            R.layout.fragment_listing_listitem,
+                            ob.GetListings(),
+                            "Listings"
+                    );
+                    listingList.setAdapter(adpter);
                     return view3;
                 default:
                     View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
@@ -241,7 +292,7 @@ public class DashboardActivity extends Activity
                   break;
                }
                default:
-                   Toast.makeText(getActivity().getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
+                  // Toast.makeText(getActivity().getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
                    break;
            }
 

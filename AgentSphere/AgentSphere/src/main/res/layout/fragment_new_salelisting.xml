@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/Form">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Basic"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/textView"
+                    android:textColor="#112A5C"
+                    android:textStyle="bold"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#525150"/>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:hint="Property Name"
+                    style="@style/Input"
+                    android:id="@+id/listing_name"/>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:hint="Community/Neighborhood"
+                    style="@style/Input"
+                    android:id="@+id/listing_name"/>
+                <Spinner
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/propTypes"
+                    android:id="@+id/PropertyType"
+                    style="@style/Input"></Spinner>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Price"
+                    android:ems="10"
+                    android:id="@+id/Price"
+                    android:layout_weight="1"
+                    style="@style/Input"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/linearLayout">
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Beds"
+                        android:entries="@array/beds"
+                        android:layout_weight="1"
+                        style="@style/Input" ></Spinner>
+                    <Spinner
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Baths"
+                        android:entries="@array/baths"
+                        android:layout_weight="1"
+                        style="@style/Input" ></Spinner>
+                </LinearLayout>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Total Area(Sqft)"
+                    android:inputType="number"
+                    style="@style/Input"/>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Carpet Area(Sqft)"
+                    android:inputType="number"
+                    style="@style/Input"/>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Age Of Construction(in Years)"
+                    android:inputType="number"
+                    android:id="@+id/Age"
+                    android:layout_weight="1"
+                    style="@style/Input"></EditText>
+            </LinearLayout>
+         <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            style="@style/Form">
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="Address Info"
+                 android:paddingBottom="10dp"
+                 android:id="@+id/textView"
+                 android:textColor="#112A5C"
+                 android:textStyle="bold"/>
+             <View
+                 android:layout_width="match_parent"
+                 android:layout_height="1dp"
+                 android:background="#525150"/>
+             <EditText
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:inputType="text"
+                 android:id="@+id/AddressLine"
+                 android:hint="Address Line"
+                 style="@style/Input"/>
+             <EditText
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:inputType="text"
+                 android:id="@+id/AddressLine2"
+                 android:hint="Address Line"
+                 style="@style/Input"/>
+             <LinearLayout
+                 android:orientation="horizontal"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:layout_alignParentBottom="true"
+                 android:layout_alignParentRight="true"
+                 android:id="@+id/linearLayout">
+
+                 <EditText
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:inputType="text"
+                     android:hint="City"
+
+                     android:ems="10"
+                     android:id="@+id/City"
+                     android:layout_weight="1"
+                     style="@style/Input"/>
+
+                 <EditText
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:inputType="number"
+                     android:hint="Zip Code"
+                     android:ems="10"
+                     android:id="@+id/ZipCode"
+                     android:layout_weight="1"
+                     style="@style/Input"/>
+
+
+             </LinearLayout>
+         </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                style="@style/Form">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Additional"
+                    android:paddingBottom="10dp"
+                    android:id="@+id/textView"
+                    android:textColor="#112A5C"
+                    android:textStyle="bold"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#525150"/>
+
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="Lot Size(Sqft)"
+                    android:id="@+id/LotSize"
+                    android:layout_weight="1"
+                    style="@style/Input"></EditText>
+
+                <MultiAutoCompleteTextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Features"
+                    android:inputType="textCapWords"
+                    style="@style/Input"
+                    android:hint="Swimming Pool,Grarge,etc.."/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="200dp"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:lines="5"
+                    android:minLines="5"
+                    android:gravity="top|left"
+                    android:hint="Description"
+                    android:id="@+id/Notes"
+                    android:scrollbars="vertical"
+                    style="@style/Input"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

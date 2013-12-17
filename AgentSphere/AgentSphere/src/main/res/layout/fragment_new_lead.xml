@@ -41,7 +41,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapWords"
                     android:hint="First Name"
                     android:ems="10"
                     android:id="@+id/FirstName"
@@ -51,7 +51,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapWords"
                     android:hint="Last Name"
                     android:ems="10"
                     android:id="@+id/LastName"
@@ -78,7 +78,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/Mobile"
                     android:layout_weight="1"
@@ -87,7 +87,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:ems="10"
                     android:id="@+id/Phone"
                     android:layout_weight="1"
@@ -154,7 +154,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:hint="Notes"
                     android:id="@+id/Remarks"
                     android:maxLines="10"
@@ -181,7 +181,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="textCapSentences"
                     android:id="@+id/AddressLine"
                     android:hint="Address Line"
                     style="@style/Input"/>
@@ -196,7 +196,7 @@
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+                        android:inputType="textCapWords"
                         android:hint="City"
 
                         android:ems="10"
@@ -219,7 +219,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="textCapWords"
                     android:hint="Country"
                     android:id="@+id/Country"
                     style="@style/Input"/>
@@ -231,7 +231,7 @@
                   <EditText
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:inputType="text"
+                      android:inputType="textCapWords"
                       style="@style/Input"
                       android:id="@+id/Facebook"
                       android:hint="Facebook"
@@ -239,7 +239,7 @@
                   <EditText
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:inputType="text"
+                      android:inputType="textCapWords"
                       android:layout_weight="1"
                       android:id="@+id/Twitter"
                       android:hint="Twitter"/>

@@ -44,7 +44,7 @@ public class LeadsActivity extends Activity implements ActionBar.TabListener {
         final ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        CloudGust.initialize("52a9b6cb75a43c192344de1f", "9886190c-aafd-45a8-a37d-0b96651aedaf");
+        CloudGust.initialize("52b02d2d75a43c192344de29", "db6c7594-7e1c-4ce2-a014-aa085c151f67");
         CloudGust.setUser("1","admin","admin");
 
         // Create the adapter that will return a fragment for each of the three
@@ -121,7 +121,7 @@ public class LeadsActivity extends Activity implements ActionBar.TabListener {
     public void onResume(){
 
         super.onResume();
-        CloudGust.initialize("52a994ef75a43c192344de18","9ecd4338-ba19-4e99-b0ff-f359fefa1c5c");
+        CloudGust.initialize("52b02d2d75a43c192344de29", "db6c7594-7e1c-4ce2-a014-aa085c151f67");
         CloudGust.setUser("1","admin","admin");
         CGCollection cInfo =new CGCollection("Leads");
         cInfo.fetch(new CGFetchCallback() {
