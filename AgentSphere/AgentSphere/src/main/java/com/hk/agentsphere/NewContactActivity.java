@@ -71,6 +71,9 @@ public class NewContactActivity extends Activity {
                     e.printStackTrace();
                 }
                 break;
+            case R.id.contact_cancel:
+                finish();
+                break;
 
         }
 

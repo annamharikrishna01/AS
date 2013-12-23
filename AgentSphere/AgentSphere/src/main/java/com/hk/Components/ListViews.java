@@ -16,6 +16,7 @@ import com.hk.agentsphere.ContactsDetailsActivity;
 import com.hk.agentsphere.LeadDetailsActivity;
 import com.hk.agentsphere.ListingDetailsActivity;
 import com.hk.agentsphere.R;
+import com.hk.agentsphere.StaffDetailsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,6 +85,12 @@ public class ListViews extends ArrayAdapter<JSONObject>{
        {
            View view= li.inflate(R.layout.fragment_lead_followup_listitem,group,false);
            View nView =followuplist(li, position, group);
+           return  nView;
+       }
+       else if(this.type == "Staff")
+       {
+           View view= li.inflate(R.layout.fragment_staff_listitem,group,false);
+           View nView =employeeList(li, position, group);
            return  nView;
        }
        else {
@@ -174,7 +181,6 @@ public class ListViews extends ArrayAdapter<JSONObject>{
         }
         return view;
     }
-
 
     public View leadsummuryList(LayoutInflater li,int position,ViewGroup group)
     {
@@ -337,6 +343,57 @@ public class ListViews extends ArrayAdapter<JSONObject>{
         }
 
         return view;
+    }
+
+    public View employeeList(LayoutInflater li,int position,ViewGroup group)
+    {
+
+        View view= li.inflate(R.layout.fragment_staff_listitem,group,false);
+         TextView sn = (TextView)view.findViewById(R.id.staff_name);
+         TextView sl=(TextView)view.findViewById(R.id.staff_leads);
+         TextView sp =(TextView)view.findViewById(R.id.staff_pending);
+         TextView spo=(TextView)view.findViewById(R.id.staff_postponed);
+        TextView sw=(TextView)view.findViewById(R.id.staff_working);
+         ImageButton lc = (ImageButton) view.findViewById(R.id.staff_call);
+
+
+        final JSONObject ob = objects.get(position);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent stDetail =new Intent(getContext(), StaffDetailsActivity.class);
+                stDetail.putExtra("Staff", ob.toString());
+                getContext().startActivity(stDetail);
+                return;
+            }
+        });
+        if(ob != null)
+        {
+            try {
+                final JSONObject contact =   ob.getJSONObject("Contact");
+                lc.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent call = new Intent(Intent.ACTION_CALL);
+                        try {
+                            call.setData(Uri.parse("tel:" + contact.getString("Mobile")));
+                            getContext().startActivity(call);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                sn.setText(contact.getString("FirstName") + " " + contact.getString("LastName"));
+                sl.setText("Leads-"+ob.getString("Leads"));
+                sp.setText("Pending-"+ob.getString("Pending"));
+                sw.setText("Working"+ob.getString("Working"));
+                spo.setText("Postponed-"+ob.getString("Postponed"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return  view;
     }
 
 

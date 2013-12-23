@@ -327,7 +327,7 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
         @Override
         public int getCount() {
 
-            return 4;
+            return 5;
         }
 
         @Override
@@ -342,6 +342,8 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
                     return "TimeLine";
                 case 3:
                     return "ShortLists";
+                case 4:
+                    return "CallLogs";
             }
             return null;
         }
@@ -565,6 +567,9 @@ public class LeadDetailsActivity extends Activity implements ActionBar.TabListen
                     );
                     listingList.setAdapter(adpter);
                     return view4;
+                case 5:
+                    View view5 =inflater.inflate(R.layout.fragment_lead_calllogs, container, false);
+                    return view5;
                default:
                    View rootView = inflater.inflate(R.layout.fragment_lead_basic, container, false);
                    return rootView;

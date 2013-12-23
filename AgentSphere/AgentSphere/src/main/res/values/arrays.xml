@@ -7,6 +7,7 @@
         <item>@string/lead</item>
         <item>@string/Contact</item>
         <item>@string/Listing</item>
+        <item>@string/Staff</item>
     </string-array>
     <string-array name="followupTypes">
         <item>PhoneCall</item>
@@ -602,4 +603,5 @@
         <item>Zimbabwe</item>
     </string-array>
 
+    <string name="Staff">Employee</string>
 </resources>

@@ -49,5 +49,9 @@
     <string name="title_activity_new_listing">Listing</string>
     <string name="title_activity_listing_details">Listing</string>
     <string name="title_activity_image_slid_activty">ImageSlidActivty</string>
+    <string name="menu_staff">Staff</string>
+    <string name="menu_news">News</string>
+    <string name="title_activity_staff_details">Staff</string>
+    <string name="title_activity_new_staff">Employee</string>
 
 </resources>

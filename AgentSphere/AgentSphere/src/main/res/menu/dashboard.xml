@@ -5,12 +5,7 @@
         android:title="@string/action_new"
         android:icon="@drawable/ic_action_new"
         android:orderInCategory="2"
-        android:showAsAction="ifRoom"/>
-    <item android:id="@+id/action_list"
-        android:title="@string/action_list"
-        android:icon="@drawable/ic_action_list"
-        android:orderInCategory="3"
-        android:showAsAction="always" />
+        android:showAsAction="always"/>
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"

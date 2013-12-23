@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.hk.agentsphere.NewContactActivity;
 import com.hk.agentsphere.NewLeadActivity;
 import com.hk.agentsphere.NewListingActivity;
+import com.hk.agentsphere.NewStaffActivity;
 import com.hk.agentsphere.R;
 
 /**
@@ -40,6 +41,10 @@ public  class Dialogs extends DialogFragment {
                            case 2:
                                Intent listing =new Intent(getActivity().getApplicationContext(),NewListingActivity.class);
                                startActivity(listing);
+                               break;
+                           case 3:
+                               Intent employee =new Intent(getActivity().getApplicationContext(),NewStaffActivity.class);
+                               startActivity(employee);
                                break;
                        }
 

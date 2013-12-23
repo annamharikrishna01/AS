@@ -34,17 +34,21 @@ public class JsonObjects {
             obj.put("Name","Listings");
             obj.put("Image", R.drawable.ic_properties);
             array.add(obj);
-           // obj = new JSONObject();
-          //  obj.put("Name","Staff");
-           // obj.put("Image", R.drawable.ic_employee);
-           // array.add(obj);
+            obj = new JSONObject();
+            obj.put("Name","Staff");
+            obj.put("Image", R.drawable.ic_employee);
+            array.add(obj);
+            obj = new JSONObject();
+            obj.put("Name","News");
+            obj.put("Image", R.drawable.ic_news);
+            array.add(obj);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return  array;
     }
-public static JSONObject getLead()
-{
+  public static JSONObject getLead()
+   {
     JSONObject obj = new JSONObject();
     try {
 
@@ -245,5 +249,45 @@ public static JSONObject getLead()
             e.printStackTrace();
         }
         return  notes;
+    }
+
+    public ArrayList<JSONObject> GetStaff()
+    {
+        ArrayList<JSONObject> staff = new ArrayList<JSONObject>();
+
+        for(int i=0;i<=2;i++)
+        {
+        JSONObject obj = new JSONObject();
+        try {
+        JSONObject cInfo = new JSONObject();
+        cInfo.put("FirstName","Hari");
+        cInfo.put("LastName","Krishna"+i);
+        cInfo.put("Name","Harikrishna");
+        cInfo.put("Mobile","9908436507");
+        cInfo.put("Phone","9908436507");
+        cInfo.put("Email","Hari000"+i+"@gmail.com");
+        cInfo.put("StreetAddress","1-25/317/10,DownTown");
+        cInfo.put("City","NewYork");
+        cInfo.put("ZipCode","83456");
+        cInfo.put("DateofBirth","12/8/1990");
+            cInfo.put("Facebook","Harikrishna");
+            cInfo.put("LinkedIn","");
+            cInfo.put("Twitter","ahkrishna");
+        obj.put("Designation","Staff");
+        obj.put("Contact",cInfo);
+        obj.put("Followups",getFollowups());
+        obj.put("Joined On","12/8/2010");
+        obj.put("Leads","4");
+        obj.put("Working","1");
+        obj.put("Pending","1");
+        obj.put("Postponed","1");
+        staff.add(obj);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        }
+        return staff;
     }
 }

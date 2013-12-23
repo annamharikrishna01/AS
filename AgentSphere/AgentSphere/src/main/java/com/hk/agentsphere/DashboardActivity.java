@@ -34,7 +34,7 @@ public class DashboardActivity extends Activity
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
-    private Menu  mMenu;
+    private static Menu  mMenu;
     private int context;
 
 
@@ -60,7 +60,12 @@ public class DashboardActivity extends Activity
                 .commit();
         context = position;
     }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu)
+    {
 
+        return  true;
+    }
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
@@ -74,6 +79,12 @@ public class DashboardActivity extends Activity
                 break;
             case 4:
                 mTitle = getString(R.string.menu_listings);
+                break;
+            case 5:
+                mTitle = getString(R.string.menu_staff);
+                break;
+            case 6:
+                mTitle = getString(R.string.menu_news);
                 break;
         }
     }
@@ -97,8 +108,6 @@ public class DashboardActivity extends Activity
         this.mMenu = menu;
 
 
-
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -106,7 +115,6 @@ public class DashboardActivity extends Activity
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
         switch (id)
         {
             case R.id.action_new:
@@ -128,35 +136,20 @@ public class DashboardActivity extends Activity
                         Intent  listing= new Intent(getApplicationContext(),NewListingActivity.class);
                         startActivity(listing);
                         break;
+                    case 4:
+                        Intent employee =new Intent(getApplicationContext(),NewStaffActivity.class);
+                        startActivity(employee);
+                        break;
+                    default:
+                        Dialogs dialogue= new Dialogs();
+                        dialogue.show(getFragmentManager(),"New");
+                        break;
                 }
                 break;
 
             case R.id.action_settings:
                 Intent settings= new Intent(this,SettingsActivity.class);
                 startActivity(settings);
-                break;
-
-            case R.id.action_list:
-                 switch (context)
-                 {
-                     case 1:
-                         Intent leads = new Intent(this,LeadsActivity.class);
-                         startActivity(leads);
-                         break;
-                     case 2:
-                         Intent contacs = new Intent(this,ContactsActivity.class);
-                         startActivity(contacs);
-                         return true;
-                     case 3:
-                         Intent listings = new Intent(this,ListingsActivity.class);
-                         startActivity(listings);
-                         return true;
-
-                     default:
-                         Intent dleads = new Intent(this,LeadsActivity.class);
-                         startActivity(dleads);
-                         return true;
-                 }
                 break;
 
         }
@@ -185,6 +178,7 @@ public class DashboardActivity extends Activity
             switch(getArguments().getInt(ARG_SECTION_NUMBER))
             {
                 case 1:
+
                     final View view = inflater.inflate((R.layout.fragment_dashboard_home), container, false);
                     JsonObjects fobjs = new JsonObjects();
                     final ListView fups =(ListView)view.findViewById(R.id.followups_list);
@@ -226,6 +220,14 @@ public class DashboardActivity extends Activity
                     return view1;
                 case 3:
                     final View view2 = inflater.inflate((R.layout.fragment_dashboard_contacts),container,false);
+                    Button call = (Button)view2.findViewById(R.id.contact_showall);
+                    call.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent list =new Intent(getActivity().getApplicationContext(),ContactsActivity.class);
+                            startActivity(list);
+                        }
+                    });
                     CloudGust.initialize("52b02d2d75a43c192344de29", "db6c7594-7e1c-4ce2-a014-aa085c151f67");
                     CloudGust.setUser("1","admin","admin");
                     final ListView contactList =(ListView)view2.findViewById(R.id.contact_list);
@@ -264,6 +266,34 @@ public class DashboardActivity extends Activity
                     );
                     listingList.setAdapter(adpter);
                     return view3;
+                case 5:
+
+                    View staffView = inflater.inflate(R.layout.fragment_dashboard_staff,container,false);
+                    JsonObjects sob=new JsonObjects();
+                    final ListView staffList =(ListView)staffView.findViewById(R.id.staff_summary_list);
+                    com.hk.Components.ListViews sadpter=new com.hk.Components.ListViews(
+                            staffView.getContext(),
+                            R.layout.fragment_staff_listitem,
+                            sob.GetStaff(),
+                            "Staff"
+                    );
+                    staffList.setAdapter(sadpter);
+
+                    return staffView;
+                case 6:
+
+                    View newsView = inflater.inflate(R.layout.fragment_dashboard_news,container,false);
+                    JsonObjects nob =new JsonObjects();
+                    final ListView notelist = (ListView)newsView.findViewById(R.id.news_list);
+                    com.hk.Components.ListViews nadpter=new com.hk.Components.ListViews(
+                            newsView.getContext(),
+                            R.layout.fragment_note_listitem,
+                            nob.GetNotes(),
+                            "Notes"
+                    );
+                    notelist.setAdapter(nadpter);
+
+                      return newsView;
                 default:
                     View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
                     TextView textView = (TextView) rootView.findViewById(R.id.section_label);

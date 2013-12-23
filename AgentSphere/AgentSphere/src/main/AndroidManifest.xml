@@ -170,6 +170,22 @@
             android:name="com.hk.agentsphere.ImageSlidActivty"
             android:label="@string/title_activity_image_slid_activty" >
         </activity>
+        <activity
+            android:name="com.hk.agentsphere.StaffDetailsActivity"
+            android:label="@string/title_activity_staff_details"
+            android:parentActivityName="DashboardActivity"
+            android:uiOptions="splitActionBarWhenNarrow" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="DashboardActivity" />
+            <meta-data
+                android:name="android.support.UI_OPTIONS"
+                android:value="splitActionBarWhenNarrow" />
+        </activity>
+        <activity
+            android:name="com.hk.agentsphere.NewStaffActivity"
+            android:label="@string/title_activity_new_staff" >
+        </activity>
     </application>
 
 </manifest>

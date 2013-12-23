@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OutGoing.iml" filepath="$PROJECT_DIR$/OutGoing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OutGoing/OutGoing-OutGoing.iml" filepath="$PROJECT_DIR$/OutGoing/OutGoing-OutGoing.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.hk.agentsphere.StaffDetailsActivity" >
+
+
+
+    <item android:id="@+id/staff_new_email"
+        android:title="Compose Mail"
+        android:icon="@drawable/ic_action_new_email"
+        android:showAsAction="always"
+        android:orderInCategory="1"></item>
+    <item android:id="@+id/staff_call"
+        android:title="Call"
+        android:icon="@drawable/ic_action_call"
+        android:showAsAction="always"
+        android:orderInCategory="2"></item>
+    <item android:id="@+id/staff_attachment"
+        android:title="Attach Image"
+        android:showAsAction="collapseActionView"
+        android:orderInCategory="5"
+        android:icon="@drawable/ic_action_new_attachment"></item>
+    <item android:id="@+id/staff_edit"
+        android:title="Edit"
+        android:showAsAction="always"
+        android:orderInCategory="4"
+        android:icon="@drawable/ic_action_edit"></item>
+    <item android:id="@+id/staff_note"
+        android:title="Add Note"
+        android:showAsAction="collapseActionView"
+        android:orderInCategory="6"
+        ></item>
+</menu>
